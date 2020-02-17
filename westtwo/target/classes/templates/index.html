@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>提交作业网站</title>
+    <link rel="stylesheet" th:href="@{/css/提交作业网站界面1.css.css}">
+    <script th:src="@{js/jquery-migrate-1.4.1.js}">
+    </script><script th:src="@{/js/提交作业网站界面1.js.js}"></script>
+
+</head>
+<body>
+<div class="bkg"></div>
+<div class="container">
+    <form class="contact" th:action="@{/upload}" method="post" enctype="multipart/form-data">
+        <h3>你是学生</h3>
+        <fieldset>
+            <input placeholder="输入作业号" type="text"  name="id" required="" autofocus="">
+        </fieldset>
+        <fieldset>
+            <input placeholder="输入你的名字" type="text"  name="name" required="" >
+        </fieldset>
+        <fieldset>
+            <input placeholder="输入你的学号" type="text" name="number" required="">
+        </fieldset>
+        <fieldset>
+            <input type="file"  name="file" required="">
+        </fieldset>
+        <fieldset>
+            <button name="submit" type="submit" class="contact-submit" >提交</button>
+        </fieldset>
+    </form>
+</div>
+<div class="container">
+    <form class="contact" th:action="@{/login}" method="post">
+        <h3>你是老师</h3>
+        <fieldset>
+            <input placeholder="输入你的账号" type="text" name="username" required="" autofocus="" id="id">
+        </fieldset>
+        <fieldset>
+            <input placeholder="输入你的密码" type="password" name="password" required="" id="pwd">
+        </fieldset>
+        <fieldset>
+            <button name="submit" type="submit" class="contact-submit" id="submit" >登录</button>
+        </fieldset>
+
+        <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+    </form>
+</div>
+</body>
+</html>
