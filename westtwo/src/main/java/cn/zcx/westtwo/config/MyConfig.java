@@ -3,7 +3,9 @@ package cn.zcx.westtwo.config;
 //配置文件
 
 //import cn.zcx.west.controller.LoginHandlerInterceptor;
+import cn.zcx.westtwo.controller.LoginHandlerInterceptor;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -18,14 +20,14 @@ public class MyConfig implements WebMvcConfigurer
     registry.addViewController("/").setViewName("index");
     registry.addViewController("/main").setViewName("teacher");
   }
-/*
+
   //登录拦截器
   @Override
   public void addInterceptors(InterceptorRegistry registry)
   {
     registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**").excludePathPatterns("/","/login","/upload","/css/*","/js/**","/img/**");
   }
-*/
+
 
 
 

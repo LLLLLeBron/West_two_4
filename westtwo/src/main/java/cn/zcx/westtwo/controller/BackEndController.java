@@ -4,11 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class ReleaseController
+public class BackEndController
 {
-  @RequestMapping("/release")
-  String release()
+  @RequestMapping("/BackEnd")
+  String BackEnd()
   {
-    return "release";
+    return "BackEnd";
   }
 }

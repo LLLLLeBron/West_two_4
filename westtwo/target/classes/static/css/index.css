@@ -10,7 +10,7 @@
     font-smoothing:antialiased;
 }
 .bkg{
-    background-image:url(../image/background1.jpeg);
+    background-image:url(background1.jpeg);
     position:fixed;
     top: 0;
     left: 0;

@@ -39,7 +39,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../westtwo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static/css" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -52,18 +52,34 @@
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.excludes" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\zcx\java\westtwo\src\main\resources\templates\error" />
-      <recent name="E:\zcx\java\westtwo\src\main\resources\templates" />
-      <recent name="E:\zcx\java\westtwo\src\main\resources\static" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\zcx\java\westtwo" />
-      <recent name="E:\zcx\java\westtwo\src\main\resources" />
-      <recent name="E:\zcx\java\westtwo\src\main\java\cn\zcx" />
-      <recent name="E:\zcx\java\westtwo\src\main\resources\static" />
+      <recent name="E:\zcx\java\westtwo\src\main\resources\static\css" />
+      <recent name="E:\zcx\java\westtwo\src\main\resources\static\js" />
       <recent name="E:\zcx\java\westtwo\src\main\resources\templates" />
+      <recent name="E:\zcx\java\westtwo\src\main\resources" />
+      <recent name="E:\zcx\java\westtwo" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\zcx\java\westtwo\src\main\resources" />
+      <recent name="E:\zcx\java\westtwo\src\main\resources\templates" />
+      <recent name="E:\zcx\java\westtwo\src\main\resources\static\css" />
+      <recent name="E:\zcx\java\westtwo\src\main\resources\static\img" />
+      <recent name="E:\zcx\java\westtwo\src\main\resources\templates\error" />
+    </key>
+  </component>
+  <component name="RestServicesNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="Found 14 services " type="fcff1e1b:RestServiceStructure$RootNode" />
+        </path>
+        <path>
+          <item name="Found 14 services " type="fcff1e1b:RestServiceStructure$RootNode" />
+          <item name="westtwo" type="c588b436:RestServiceStructure$ProjectNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
   </component>
   <component name="RunManager" selected="Spring Boot.WesttwoApplication">
     <configuration name="WesttwoApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
@@ -148,6 +164,9 @@
       <workItem from="1581927892407" duration="1905000" />
       <workItem from="1581931580095" duration="9000000" />
       <workItem from="1581945984539" duration="508000" />
+      <workItem from="1581948310287" duration="82000" />
+      <workItem from="1582003343597" duration="600000" />
+      <workItem from="1582005205838" duration="23460000" />
     </task>
     <servers />
   </component>
@@ -171,42 +190,42 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1580807726102" />
-    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1581939675797">
+    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1582010634554">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1581939675797" />
-    <state width="1493" height="165" key="GridCell.Tab.0.bottom" timestamp="1581942563733">
+    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1582010634554" />
+    <state width="1493" height="182" key="GridCell.Tab.0.bottom" timestamp="1582038604670">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="165" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1581942563733" />
-    <state width="1493" height="165" key="GridCell.Tab.0.center" timestamp="1581942563733">
+    <state width="1493" height="182" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1582038604670" />
+    <state width="1493" height="182" key="GridCell.Tab.0.center" timestamp="1582038604669">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="165" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1581942563733" />
-    <state width="1493" height="165" key="GridCell.Tab.0.left" timestamp="1581942563733">
+    <state width="1493" height="182" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1582038604669" />
+    <state width="1493" height="182" key="GridCell.Tab.0.left" timestamp="1582038604669">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="165" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1581942563733" />
-    <state width="1493" height="165" key="GridCell.Tab.0.right" timestamp="1581942563733">
+    <state width="1493" height="182" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1582038604669" />
+    <state width="1493" height="182" key="GridCell.Tab.0.right" timestamp="1582038604669">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="165" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1581942563733" />
-    <state width="1493" height="165" key="GridCell.Tab.1.bottom" timestamp="1581942563702">
+    <state width="1493" height="182" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1582038604669" />
+    <state width="1493" height="182" key="GridCell.Tab.1.bottom" timestamp="1582038604670">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="165" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1581942563702" />
-    <state width="1493" height="165" key="GridCell.Tab.1.center" timestamp="1581942563702">
+    <state width="1493" height="182" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1582038604670" />
+    <state width="1493" height="182" key="GridCell.Tab.1.center" timestamp="1582038604670">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="165" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1581942563702" />
-    <state width="1493" height="165" key="GridCell.Tab.1.left" timestamp="1581942563702">
+    <state width="1493" height="182" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1582038604670" />
+    <state width="1493" height="182" key="GridCell.Tab.1.left" timestamp="1582038604670">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="165" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1581942563702" />
-    <state width="1493" height="165" key="GridCell.Tab.1.right" timestamp="1581942563702">
+    <state width="1493" height="182" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1582038604670" />
+    <state width="1493" height="182" key="GridCell.Tab.1.right" timestamp="1582038604670">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="165" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1581942563702" />
+    <state width="1493" height="182" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1582038604670" />
     <state x="349" y="147" key="IDE.errors.dialog" timestamp="1580733386322">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -215,13 +234,21 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1581930468177" />
-    <state x="449" y="237" key="com.intellij.ide.util.TipDialog" timestamp="1581945986091">
+    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1582038498922">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="449" y="237" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1581945986091" />
-    <state x="178" y="114" key="new project wizard" timestamp="1580634533783">
+    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1582038498922" />
+    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1582038498922">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="178" y="114" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1580634533783" />
+    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1582038498922" />
+    <state x="449" y="237" key="com.intellij.ide.util.TipDialog" timestamp="1582005214709">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="449" y="237" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1582005214709" />
+    <state x="178" y="45" key="new project wizard" timestamp="1582005276936">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="178" y="45" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1582005276936" />
   </component>
 </project>

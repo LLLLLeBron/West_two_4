@@ -35,7 +35,7 @@ public class LoginController
     if(!StringUtils.isEmpty(username)&&"123456".equals(password))     //密码为123456即可登录成功
     {
       session.setAttribute("loginUser",username);
-      return "redirect:/assessList";      //重定向
+      return "BackEnd";      //重定向
     }
     else
     {

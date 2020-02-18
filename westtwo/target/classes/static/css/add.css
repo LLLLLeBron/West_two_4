@@ -41,7 +41,7 @@ body {
     width: 230px;
     height: 165px;
     background-color: #ffffff;
-    background: url("../image/4.jpeg");
+    background: url(4.jpeg);
     float:left;
     margin-left: 7px;
     vertical-align: middle;
@@ -89,6 +89,9 @@ textarea:hover {
     transition: border-color 0.3s ease-in-out;
     border: 1px solid #AAA;
 }
+a{
+    text-decoration: none;
+}
 .bottom {
     cursor:pointer;
     width:80px;
@@ -120,4 +123,11 @@ textarea:hover {
 #timeGroup{
     padding: 5px;
     margin: 5px;
+}
+h5{
+    color: #62a7d0;
+    font-size:15px;
+    float:left;
+    margin-left:3px;
+    margin-buttom:2px;
 }

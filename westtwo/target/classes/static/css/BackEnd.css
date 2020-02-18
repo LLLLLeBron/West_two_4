@@ -14,6 +14,10 @@ body {
     line-height:50px;
     background:#F9F9F9;
 }
+a{
+    text-decoration:none;
+}
+
 div.manager{
     display: flex;
     flex-direction: column;
@@ -34,19 +38,20 @@ div.manager{
 .manager-icon{
     width: 258px;
     height: 265px;
-    background: url("../image/1.jpeg");
+    background: url(1.jpeg);
 }
 .publish-icon{
     width: 250px;
     height: 250px;
-    background: url("../image/2.jpg");
+    background: url(2.jpg);
 }
 .check-icon{
     width: 250px;
     height: 250px;
-    background: url("../image/3.jpeg");
+    background: url(3.jpeg);
 }
-h1,h2{
+h1,h2,a{
+    font-size: larger;
     color:#0CF ;
 }
 .manager-icon,.publish-icon,.check-icon{
