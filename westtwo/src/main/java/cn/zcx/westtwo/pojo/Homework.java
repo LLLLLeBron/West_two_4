@@ -73,7 +73,7 @@ public class Homework
 
 
 
-  //get 函数
+  //get set函数
   public int getId() {
     return id;
   }
@@ -96,6 +96,42 @@ public class Homework
 
   public int getFlag() {
     return flag;
+  }
+
+  public static void setHomeworkId(int homeworkId) {
+    Homework.homeworkId = homeworkId;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public void setAssId(int assId) {
+    this.assId = assId;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public void setNumber(long number) {
+    this.number = number;
+  }
+
+  public void setTime(Date time) {
+    this.time = time;
+  }
+
+  public void setFlag(int flag) {
+    this.flag = flag;
+  }
+
+  public void setFilePath(String filePath) {
+    this.filePath = filePath;
+  }
+
+  public void setFileName(String fileName) {
+    this.fileName = fileName;
   }
 
   public String getFilePath() {

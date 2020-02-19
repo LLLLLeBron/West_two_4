@@ -67,7 +67,7 @@ public class HomeworkDao
       try
       {
         String sql = "create table " + tableName + "(考核编号 int,编号 int,学号 bigint,姓名 varchar(40)," +
-            "审核状态 varchar(40),文件路径 varchar(200),文件名 varchar(40),提交时间 TIMESTAMP)";
+            "审核状态 int,文件路径 varchar(200),文件名 varchar(40),提交时间 TIMESTAMP)";
         //执行语句
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.executeUpdate();
@@ -112,10 +112,6 @@ public class HomeworkDao
           return false;
         else
         {
-          String flag;
-          //将表示审核状态的int值转化为字符串
-          flag = Homework.flags[homework.getFlag()];
-
           //sql语句
           String sql = "insert into " + tableName + "(考核编号,编号,学号,姓名,审核状态,文件路径,文件名,提交时间) values(?,?,?,?,?,?,?,?)";
           preparedStatement = connection.prepareStatement(sql);
@@ -123,7 +119,7 @@ public class HomeworkDao
           preparedStatement.setInt(2, homework.getId());
           preparedStatement.setLong(3, homework.getNumber());
           preparedStatement.setString(4, homework.getName());
-          preparedStatement.setString(5, flag);
+          preparedStatement.setInt(5, homework.getFlag());
           preparedStatement.setString(6, homework.getFilePath());
           preparedStatement.setString(7,homework.getFileName());
           preparedStatement.setTimestamp(8, new Timestamp(homework.getTime().getTime()));
@@ -139,6 +135,44 @@ public class HomeworkDao
       {
         ConnectionTool.close(preparedStatement);    //关闭连接
         connectionClose();
+        return true;
+      }
+    }
+    return false;
+  }
+
+  //修改表中某条信息
+  public boolean update(int id,Homework homework)
+  {
+    String tableName=id+"_homework";
+    if(tableJudgment(tableName))       //判断表是否存在
+    {
+      connectionOpen();       //连接数据库
+      PreparedStatement preparedStatement = null;
+      try
+      {
+        //sql语句
+        String sql = "update "+tableName+" set 考核编号=?,学号=?,姓名=?,审核状态=?,文件路径=?,文件名=?,提交时间=? where 编号=?";
+        preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, homework.getAssId());
+        preparedStatement.setLong(2,homework.getNumber());
+        preparedStatement.setString(3,homework.getName());
+        preparedStatement.setInt(4,homework.getFlag());
+        preparedStatement.setString(5,homework.getFilePath());
+        preparedStatement.setString(6,homework.getFileName());
+        preparedStatement.setTimestamp(7, new Timestamp(homework.getTime().getTime()));
+        preparedStatement.setInt(8,homework.getId());
+        preparedStatement.executeUpdate();    //执行语句
+
+      }
+      catch (SQLException e)
+      {
+        e.printStackTrace();
+      }
+      finally
+      {
+        connectionClose();        //关闭连接
+        ConnectionTool.close(preparedStatement);
         return true;
       }
     }
@@ -193,22 +227,15 @@ public class HomeworkDao
         resultSet = preparedStatement.executeQuery();   //执行语句，并将结果返回ResultSet中
         while (resultSet.next())   //遍历
         {
-          int Flag = 0;
           int AssId = resultSet.getInt("考核编号");
           int id = resultSet.getInt("编号");
           long number = resultSet.getLong("学号");
           String name = resultSet.getString("姓名");
-          String flag = resultSet.getString("审核状态");
+          int flag = resultSet.getInt("审核状态");
           String filePath = resultSet.getString("文件路径");
           String fileName=resultSet.getString("文件名");
-          for (int i = 0; i < Homework.flags.length; i++)
-          {
-            if (flag.equals(Homework.flags[i]))      //将字符串形式的审核状态转化为标记
-              Flag = i;
-          }
           Date date = new Date(resultSet.getTimestamp("提交时间").getTime());//将timestamp转化为date
-
-          homeworks.add(new Homework(id, AssId, name, number, date, Flag, filePath,fileName));       //将每条作业信息都存入Arraylist中
+          homeworks.add(new Homework(id, AssId, name, number, date, flag, filePath,fileName));       //将每条作业信息都存入Arraylist中
         }
         ConnectionTool.close(resultSet);
       }
@@ -247,7 +274,7 @@ public class HomeworkDao
   //通过ID在列表中查找作业
   public Homework getHomeworkById(int id)
   {
-    Homework homework=new Homework();
+    Homework homework=null;
     for(int i=0;i<homeworks.size();i++)
     {
       if(id==homeworks.get(i).getId())
@@ -280,10 +307,6 @@ public class HomeworkDao
     return homeworks;
   }
 
-  public void setHomeworks(ArrayList<Homework> homeworks)
-  {
-    this.homeworks = homeworks;
-  }
 
   public Connection getConnection()
   {

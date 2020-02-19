@@ -8,13 +8,11 @@ spring:
 #清空缓存
   thymeleaf:
     cache: false
-#设置文件上传的大小限制
+  #设置文件上传的大小限制
   servlet:
     multipart:
       max-file-size: 100MB
       max-request-size: 1000MB
-  mvc:
-    date-format: yyyy-MM-dd HH:mm:ss
 #首页路径
 server:
   servlet:

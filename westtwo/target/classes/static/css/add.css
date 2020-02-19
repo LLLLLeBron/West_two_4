@@ -110,15 +110,16 @@ a{
     -moz-transition:background 0.3s ease-in-out;
     transition:background-color 0.3s ease-in-out;
 }
-#stime{
+#date{
+     width:140px;
+     padding:7px;
+     margin: 5px;
+ }
+
+#time{
     width:140px;
     padding:7px;
     margin: 5px;
-}
-#etime{
-    width:140px;
-    padding:7px;
-    margin:5px;
 }
 #timeGroup{
     padding: 5px;

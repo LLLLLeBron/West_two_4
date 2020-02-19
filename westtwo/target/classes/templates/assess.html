@@ -11,9 +11,9 @@
 <div id="all">
     <div class="menu">
         <span><a class="btn btn-sm btn-primary" th:href="@{/}">返回首页</a></span>
-        <span><a class="btn btn-sm btn-primary" th:href="@{/logout}">退出登录</a></span>
         <span><a class="btn btn-sm btn-primary" th:href="@{/assessAdd}" >任务发布</a></span>
         <span><a class="btn btn-sm btn-primary" th:href="@{/assessList}">任务查看</a></span>
+        <span><a class="btn btn-sm btn-primary" th:href="@{/logout}">退出登录</a></span>
     </div>
     <div class="table-responsive">
         <table class="table table-striped table-sm">
@@ -55,10 +55,18 @@
                 <td th:text="${homework.getNumber()}"></td>
                 <td th:text="${homework.getName()}"></td>
                 <td th:text="${#dates.format(homework.getTime(),'yyyy-MM-dd HH:mm:ss')}"></td>
-                <td th:text="${homework.getFlag()}"></td>
+
+                <div th:switch="${homework.getFlag()}" >
+                    <td th:case="0" th:text="${status0}"> </td>
+                    <td th:case="1" th:text="${status1}"> </td>
+                    <td th:case="2" th:text="${status2}"> </td>
+                </div>
                 <td>
                     <a class="btn btn-sm btn-primary" th:href="@{/download/}+${assess.getId()}+'/'+${homework.getId()}">下载</a>
                     <a class="btn btn-sm btn-danger" th:href="@{/homeworkDelete/}+${assess.getId()}+'/'+${homework.getId()}">删除</a>
+                    <a class="btn btn-sm btn-danger" th:href="@{/homeworkPass/}+${assess.getId()}+'/'+${homework.getId()}">通过</a>
+                    <a class="btn btn-sm btn-danger" th:href="@{/homeworkUnderView/}+${assess.getId()}+'/'+${homework.getId()}">审核中</a>
+                    <a class="btn btn-sm btn-danger" th:href="@{/homeworkCull/}+${assess.getId()}+'/'+${homework.getId()}">未通过</a>
                 </td>
             </tr>
             </tbody>

@@ -12,9 +12,9 @@
 <div id="all">
   <div class="menu">
     <span><a class="btn btn-sm btn-primary" th:href="@{/}">返回首页</a></span>
-    <span><a class="btn btn-sm btn-primary" th:href="@{/logout}">退出登录</a></span>
     <span><a class="btn btn-sm btn-primary" th:href="@{/assessAdd}" >任务发布</a></span>
     <span><a class="btn btn-sm btn-primary" th:href="@{/assessList}">任务查看</a></span>
+    <span><a class="btn btn-sm btn-primary" th:href="@{/logout}">退出登录</a></span>
   </div>
   <div class="input-box">
     <form method="post" th:action="@{/assessEdit/}+${assess.getId()}" id="teacherCreate" enctype="multipart/form-data" style="">

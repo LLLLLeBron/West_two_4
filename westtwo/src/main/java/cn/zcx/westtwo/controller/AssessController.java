@@ -1,13 +1,17 @@
 package cn.zcx.westtwo.controller;
 
 import cn.zcx.westtwo.dao.AssessDao;
+import cn.zcx.westtwo.dao.HomeworkDao;
 import cn.zcx.westtwo.pojo.Assess;
+import cn.zcx.westtwo.pojo.Homework;
 import cn.zcx.westtwo.service.AssessService;
 import cn.zcx.westtwo.service.HomeworkService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -18,28 +22,24 @@ public class AssessController
   @RequestMapping("/assessList")
   String assessList(Model model)
   {
-    ArrayList<Assess> assesses=new ArrayList<>();
-    assesses=AssessService.getAssesses();
-    model.addAttribute("assesses", assesses);        //将考核信息列表传给前台*/
-
+    model.addAttribute("assesses", AssessService.getAssesses());        //将考核信息列表传给前台*/
     return "list";        //返回考核列表展示页面
   }
 
   //进入考核发布页面
   @GetMapping("/assessAdd")
-  String assessAdd()
+  String assessAdd(Model model)
   {
+    model.addAttribute("time",new Date());
     return "add";      //返回考核发布页面
   }
 
   //发布考核信息
   @PostMapping("/assessAdd")
-  String add(@RequestParam("assName") String assName, @RequestParam("content")
-      String content, Model model)
+  String add(@RequestParam("assName") String assName, @RequestParam("content") String content,
+             @RequestParam("date") String date,@RequestParam("time") String time, Model model)
   {
-
-
-    Assess assess=new Assess(assName,content,new Date(new Date().getTime()+1000000000));
+    Assess assess=new Assess(assName,content,AssessService.setDate(date,time));
     AssessService.insertAssess(assess);
     return "redirect:/assessList";      //重定向至考核列表展示
   }
@@ -49,8 +49,12 @@ public class AssessController
   String assess(@PathVariable("id") int id,Model model)
   {
     model.addAttribute("assess", AssessService.getAssessById(id));   //将该id的考核信息传给前台
+    //将审核状态字符串数组传给前台
+    model.addAttribute("status0", Homework.flags[0]);
+    model.addAttribute("status1", Homework.flags[1]);
+    model.addAttribute("status2", Homework.flags[2]);
 
-    model.addAttribute("homeworks", HomeworkService.getHomeworks(id));      //将该考核下的所有作业信息传给前端
+    model.addAttribute("homeworks", HomeworkService.getHomeworks(id));      //将该考核下的所有作业信息传给前台
     return "assess";        //返回考核详情页
   }
 
@@ -64,12 +68,11 @@ public class AssessController
 
   //修改考核信息
   @PostMapping("/assessEdit/{id}")
-  String edit(@PathVariable("id") int id,@RequestParam("assName") String assName,
-              @RequestParam("content") String content)
+  String edit(@PathVariable("id") int id,@RequestParam("assName") String assName, @RequestParam("content") String content,
+              @RequestParam("date") String date,@RequestParam("time") String time, Model model)
   {
-    Assess assess=new Assess(id, assName, content, new Date(new Date().getTime()+1000000000));       //修改后的考核信息
-
-    AssessService.updateAssess(assess);       //更新信息
+    Assess assess=new Assess(id,assName,content,AssessService.setDate(date,time));
+    AssessService.updateAssess(assess);
     return "redirect:/assess/{id}";    //重定向至考核详情页
   }
 

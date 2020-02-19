@@ -4,7 +4,10 @@ package cn.zcx.westtwo.service;
 import cn.zcx.westtwo.dao.AssessDao;
 import cn.zcx.westtwo.pojo.Assess;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 //实现考核信息相关的业务
 public class AssessService
@@ -45,6 +48,36 @@ public class AssessService
   {
     AssessDao assessDao=new AssessDao();
     assessDao.delete(id);         //删除考核信息
+  }
+
+  //通过ID查询考核信息是否存在
+  public static boolean findAssess(int id)
+  {
+    AssessDao assessDao=new AssessDao();
+    assessDao.getAll();
+    if(assessDao.getAssessById(id)==null)
+      return false;
+    else
+      return true;
+  }
+
+  //通过日期和时间字符串生成date
+  public static Date setDate(String date,String time)
+  {
+    Date newDate=new Date();
+    try
+    {
+      SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd hh:mm");     //设置时间格式为 "yyyy-mm-dd hh:mm"
+      newDate= format.parse(date + " " + time);     //生成时间
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+    finally
+    {
+      return newDate;  //返回生成的时间
+    }
   }
 
 }

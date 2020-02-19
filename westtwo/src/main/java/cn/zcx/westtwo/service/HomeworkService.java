@@ -6,6 +6,7 @@ import cn.zcx.westtwo.pojo.Homework;
 
 import java.util.ArrayList;
 
+
 //实现作业信息相关的业务
 public class HomeworkService
 {
@@ -37,5 +38,15 @@ public class HomeworkService
   {
     HomeworkDao homeworkDao=new HomeworkDao();
     homeworkDao.delete(assId,homId);
+  }
+
+  //修改作业的审核状态
+  public static boolean updateFlag(int assId,int homId,int flag)
+  {
+    HomeworkDao homeworkDao=new HomeworkDao();
+    homeworkDao.getAll(assId);
+    Homework homework=homeworkDao.getHomeworkById(homId);
+    homework.setFlag(flag);
+    return homeworkDao.update(assId,homework);
   }
 }

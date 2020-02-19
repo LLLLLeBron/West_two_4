@@ -11,9 +11,9 @@
     <div id="all">
         <div class="menu">
             <span><a class="btn btn-sm btn-primary" th:href="@{/}">返回首页</a></span>
-            <span><a class="btn btn-sm btn-primary" th:href="@{/logout}">退出登录</a></span>
             <span><a class="btn btn-sm btn-primary" th:href="@{/assessAdd}" >任务发布</a></span>
             <span><a class="btn btn-sm btn-primary" th:href="@{/assessList}">任务查看</a></span>
+            <span><a class="btn btn-sm btn-primary" th:href="@{/logout}">退出登录</a></span>
         </div>
         <div class="input-box">
             <form method="post" th:action="@{/assessAdd}" id="teacherCreate" enctype="multipart/form-data" style="">
@@ -27,7 +27,8 @@
                     <textarea name="content" class="rte1"  placeholder="考核要求"></textarea>
                 </div>
                 <div>
-                    <span><h5>截止时间：</h5><input type="date" name="date" id="stime" ><input type="time" name="time" id="etime" ></span>
+                    <span><h5>截止时间：</h5>
+                    <input type="date" name="date" id="date" > <input type="time" name="time" id="time" ></span>
                 </div>
                 <div id="bottoms">
                     <button type="submit" class="btn btn-primary">确认布置</button>

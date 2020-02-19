@@ -258,7 +258,7 @@ public class AssessDao
   //通过ID在列表中查找考核
   public Assess getAssessById(int id)
   {
-    Assess assessment=new Assess();
+    Assess assessment=null;
     for(int i=0;i<assesses.size();i++)
     {
       if(id==assesses.get(i).getId())

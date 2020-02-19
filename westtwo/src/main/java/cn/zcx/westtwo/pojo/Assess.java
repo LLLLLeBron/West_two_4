@@ -4,6 +4,7 @@ package cn.zcx.westtwo.pojo;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.Scanner;
 
 
 @Data
@@ -23,6 +24,7 @@ public class Assess
     {
         this.id=assessId++;
     }
+
 
 //有参构造函数
     public Assess(int id, String assName, String content, Date deadline)
