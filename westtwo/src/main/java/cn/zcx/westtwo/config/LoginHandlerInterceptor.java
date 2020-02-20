@@ -1,4 +1,4 @@
-package cn.zcx.westtwo.controller;
+package cn.zcx.westtwo.config;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 

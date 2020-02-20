@@ -30,7 +30,7 @@ public class User
 //判断账号密码是否正确
   public boolean equals(User user)
   {
-    return this.username==user.getUsername()&&this.password==user.getPassword();
+    return this.username.equals(user.getUsername())&&this.password.equals(user.getPassword());
   }
 
 

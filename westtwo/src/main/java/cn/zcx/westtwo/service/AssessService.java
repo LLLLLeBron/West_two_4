@@ -67,8 +67,8 @@ public class AssessService
     Date newDate=new Date();
     try
     {
-      SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd hh:mm");     //设置时间格式为 "yyyy-mm-dd hh:mm"
-      newDate= format.parse(date + " " + time);     //生成时间
+      SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");     //设置时间格式为 "yyyy-MM-dd HH:mm:ss"
+      newDate= format.parse(date + " " + time+":00");     //生成时间
     }
     catch (Exception e)
     {

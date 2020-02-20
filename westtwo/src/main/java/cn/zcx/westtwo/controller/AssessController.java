@@ -30,7 +30,6 @@ public class AssessController
   @GetMapping("/assessAdd")
   String assessAdd(Model model)
   {
-    model.addAttribute("time",new Date());
     return "add";      //返回考核发布页面
   }
 
@@ -45,7 +44,7 @@ public class AssessController
   }
 
   //进入考核详情页
-  @GetMapping("/assess/{id}")
+  @RequestMapping("/assess/{id}")
   String assess(@PathVariable("id") int id,Model model)
   {
     model.addAttribute("assess", AssessService.getAssessById(id));   //将该id的考核信息传给前台

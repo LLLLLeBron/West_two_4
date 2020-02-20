@@ -101,16 +101,18 @@ public class HomeworkDao
   //向表中插入一条作业数据
   public boolean insert(Homework homework, Assess assess)
   {
-    String tableName=assess.getId()+"_homework";   //表名
-    if(tableJudgment(tableName))       //判断表是否存在
+    String tableName = assess.getId() + "_homework";   //表名
+    if (!homework.addAssessment(assess))      //判断该作业信息能否插入数据库中（即是否超时）
     {
-      connectionOpen();     //连接数据库
-      PreparedStatement preparedStatement = null;
-      try
+      return false;
+    }
+    else        //作业信息未超时，有效
+    {
+      if (tableJudgment(tableName))       //判断表是否存在
       {
-        if (!homework.addAssessment(assess))
-          return false;
-        else
+        connectionOpen();     //连接数据库
+        PreparedStatement preparedStatement = null;
+        try
         {
           //sql语句
           String sql = "insert into " + tableName + "(考核编号,编号,学号,姓名,审核状态,文件路径,文件名,提交时间) values(?,?,?,?,?,?,?,?)";
@@ -121,24 +123,27 @@ public class HomeworkDao
           preparedStatement.setString(4, homework.getName());
           preparedStatement.setInt(5, homework.getFlag());
           preparedStatement.setString(6, homework.getFilePath());
-          preparedStatement.setString(7,homework.getFileName());
+          preparedStatement.setString(7, homework.getFileName());
           preparedStatement.setTimestamp(8, new Timestamp(homework.getTime().getTime()));
 
           preparedStatement.executeUpdate();      //执行语句
         }
+        catch (SQLException e)
+        {
+          e.printStackTrace();
+        }
+        finally
+        {
+          ConnectionTool.close(preparedStatement);    //关闭连接
+          connectionClose();
+          return true;
+        }
       }
-      catch (SQLException e)
+      else      //表不存在，插入失败
       {
-        e.printStackTrace();
-      }
-      finally
-      {
-        ConnectionTool.close(preparedStatement);    //关闭连接
-        connectionClose();
-        return true;
+        return false;
       }
     }
-    return false;
   }
 
   //修改表中某条信息
