@@ -25,9 +25,4 @@ public class MyConfig implements WebMvcConfigurer
   {
     registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**").excludePathPatterns("/","/login","/upload","/css/*","/js/**","/img/**");
   }
-
-
-
-
-
 }

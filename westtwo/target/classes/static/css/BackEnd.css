@@ -12,7 +12,7 @@
 body {
     font-family: Arial;
     line-height:50px;
-    background:#F9F9F9;
+    background-color: #ffffff;
 }
 a{
     text-decoration:none;
@@ -53,6 +53,7 @@ div.manager{
 h1,h2,a{
     font-size: larger;
     color:#0CF ;
+    font-size:30px;
 }
 .manager-icon,.publish-icon,.check-icon{
     box-shadow: 10px 10px 4px #AAA;

@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>提交作业网站</title>
-    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" href="../static/css/index.css">
+    <script src="../static/js/jquery-migrate-1.4.1.js"></script>
+    <script src="../static/js/index.js"></script>
+    <!--<link rel="stylesheet" th:href="@{/css/index.css}">
     <script th:src="@{/js/jquery-migrate-1.4.1.js}">
-    </script><script th:src="@{/js/index.js}"></script>
+    </script><script th:src="@{/js/index.js}"></script>-->
 
 </head>
 <body>
-<div class="bkg"></div>
+<div>
+    <h7 id="in">进入后台</h7>
+</div>
 <div class="container">
     <form class="contact" th:action="@{/upload}" method="post" enctype="multipart/form-data">
         <h3>你是学生</h3>
@@ -30,9 +35,20 @@
         <fieldset>
             <button name="submit" type="submit" class="contact-submit" >提交</button>
         </fieldset>
-
-        <!--   文件上传结果提示 -->
-        <p style="color: red" th:text="${upload}" th:if="${not #strings.isEmpty(upload)}"></p>
+    </form>
+</div>
+<div class="container">
+    <form class="contact" action="../2/2.html.html" method="post">
+        <h3>注册账号</h3>
+        <fieldset>
+            <input placeholder="输入你的账号" type="text"  required="" autofocus="" id="id1">
+        </fieldset>
+        <fieldset>
+            <input placeholder="输入你的密码" type="password"  required="" id="pwd1">
+        </fieldset>
+        <fieldset>
+            <button name="submit" type="submit" class="contact-submit" id="submit1" >注册</button>
+        </fieldset>
     </form>
 </div>
 <div class="container">

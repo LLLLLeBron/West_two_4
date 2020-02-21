@@ -5,7 +5,7 @@ spring:
     username: LittleStar
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: 321123klklkl
-#清空缓存
+  #清空缓存
   thymeleaf:
     cache: false
   #设置文件上传的大小限制
@@ -17,6 +17,7 @@ spring:
 server:
   servlet:
     context-path: /
+
 
 
 

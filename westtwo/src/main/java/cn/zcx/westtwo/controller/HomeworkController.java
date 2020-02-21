@@ -6,6 +6,7 @@ import cn.zcx.westtwo.pojo.Assess;
 import cn.zcx.westtwo.pojo.Homework;
 import cn.zcx.westtwo.service.AssessService;
 import cn.zcx.westtwo.service.HomeworkService;
+import cn.zcx.westtwo.service.ToolService;
 import org.apache.commons.io.IOUtils;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Controller;
@@ -16,8 +17,10 @@ import cn.zcx.westtwo.controller.AssessController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.tools.Tool;
 import java.io.*;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Controller
@@ -66,6 +69,17 @@ public class HomeworkController
     HomeworkService.deleteHomework(assId,homId);
     return "redirect:/assess/{assId}";    //重定向至考核详情页
   }
+
+
+  //批量删除作业信息
+  @PostMapping("/deleteAll/{assId}")
+  public String deleteHomeworks(String checkList,@PathVariable("assId") int assId)
+  {
+    HomeworkService.deleteHomeworks(assId, ToolService.getIds(checkList));
+    return "redirect:/assess/{assId}";  //重定向至考核详情页
+  }
+
+
 
   //将作业标记为审核中
   @RequestMapping("/homeworkUnderView/{assId}/{homId}")

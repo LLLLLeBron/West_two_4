@@ -93,6 +93,41 @@ public class UserDao
     }
   }
 
+  //判断该用户名是否存在
+  public boolean isExist(String username)
+  {
+    if (tableJudgment("user"))        //判断表是否存在
+    {
+      connectionOpen();     //连接数据库
+      PreparedStatement preparedStatement = null;
+      ResultSet resultSet = null;
+      try
+      {
+        //sql语句
+        String sql = "select * from user where 用户名=?";
+        preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1,username);
+
+        resultSet = preparedStatement.executeQuery(); //执行语句并将结果返回ResultSet
+        if (resultSet.next())       //判断数据库中是否有和该用户名相同的账号信息
+        {
+          connectionClose();      //关闭连接
+          ConnectionTool.close(resultSet);
+          return true;
+        }
+      }
+      catch (SQLException e)
+      {
+        e.printStackTrace();
+      }
+      return false;
+    }
+    else
+    {
+      System.out.println(3333333);
+      return false;
+    }
+  }
 
   //向表中插入一条账号数据
   public boolean insert(User user)
@@ -125,6 +160,7 @@ public class UserDao
     }
     return false;
   }
+
 
   //将表中所有数据导出
   public ArrayList<User> getAll()

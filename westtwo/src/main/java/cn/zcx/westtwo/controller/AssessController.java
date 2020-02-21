@@ -38,7 +38,7 @@ public class AssessController
   String add(@RequestParam("assName") String assName, @RequestParam("content") String content,
              @RequestParam("date") String date,@RequestParam("time") String time, Model model)
   {
-    Assess assess=new Assess(assName,content,AssessService.setDate(date,time));
+    Assess assess=new Assess(assName,content,AssessService.setDate(date+" "+time));
     AssessService.insertAssess(assess);
     return "redirect:/assessList";      //重定向至考核列表展示
   }
@@ -57,20 +57,12 @@ public class AssessController
     return "assess";        //返回考核详情页
   }
 
-  //进入信息修改页面
-  @GetMapping("/assessEdit/{id}")
-  String assessEdit(@PathVariable("id") int id,Model model)
-  {
-    model.addAttribute("assess", AssessService.getAssessById(id));   //将该条考核信息传给前台
-    return "edit";          //返回考核信息修改页面
-  }
-
   //修改考核信息
-  @PostMapping("/assessEdit/{id}")
+  @RequestMapping("/assessEdit/{id}")
   String edit(@PathVariable("id") int id,@RequestParam("assName") String assName, @RequestParam("content") String content,
               @RequestParam("date") String date,@RequestParam("time") String time, Model model)
   {
-    Assess assess=new Assess(id,assName,content,AssessService.setDate(date,time));
+    Assess assess=new Assess(id,assName,content,AssessService.setDate(date));
     AssessService.updateAssess(assess);
     return "redirect:/assess/{id}";    //重定向至考核详情页
   }

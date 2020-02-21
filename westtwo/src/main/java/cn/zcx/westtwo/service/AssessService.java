@@ -61,14 +61,14 @@ public class AssessService
       return true;
   }
 
-  //通过日期和时间字符串生成date
-  public static Date setDate(String date,String time)
+  //通过日期字符串生成date
+  public static Date setDate(String date)
   {
     Date newDate=new Date();
     try
     {
       SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");     //设置时间格式为 "yyyy-MM-dd HH:mm:ss"
-      newDate= format.parse(date + " " + time+":00");     //生成时间
+      newDate= format.parse(date+":00");     //生成时间
     }
     catch (Exception e)
     {

@@ -40,6 +40,13 @@ public class HomeworkService
     homeworkDao.delete(assId,homId);
   }
 
+  //批量删除作业信息
+  public static void deleteHomeworks(int assId,ArrayList<Integer> homIds)
+  {
+    for(int i=0;i<homIds.size();i++)
+      deleteHomework(assId,homIds.get(i));      //删除ID列表中所有对应的作业信息
+  }
+
   //修改作业的审核状态
   public static boolean updateFlag(int assId,int homId,int flag)
   {
