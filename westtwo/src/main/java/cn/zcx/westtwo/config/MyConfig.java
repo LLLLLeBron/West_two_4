@@ -16,13 +16,14 @@ public class MyConfig implements WebMvcConfigurer
   @Override
   public void addViewControllers(ViewControllerRegistry registry)
   {
-    registry.addViewController("/main").setViewName("BackEnd");
+    registry.addViewController("/main").setViewName("BackEnd");   // /main返回BackEnd页面
   }
 
   //登录拦截器
   @Override
   public void addInterceptors(InterceptorRegistry registry)
   {
+    //未登录的情况下只允许/login /enrol /upload的访问
     registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**").excludePathPatterns("/","/login","/enrol","/upload","/css/*","/js/**","/img/**");
   }
 }

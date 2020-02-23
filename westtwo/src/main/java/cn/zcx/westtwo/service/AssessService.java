@@ -25,8 +25,8 @@ public class AssessService
   public static Assess getAssessById(int id)
   {
     AssessDao assessDao=new AssessDao();
-    assessDao.getAll();
-    return assessDao.getAssessById(id);
+    assessDao.getAll();       //导出考核列表
+    return assessDao.getAssessById(id);   //返回对应ID的考核信息
   }
 
   //向数据库中插入一条考核信息
@@ -34,7 +34,7 @@ public class AssessService
   {
     AssessDao assessDao=new AssessDao();
     assessDao.createTable();
-    return assessDao.insert(assess);
+    return assessDao.insert(assess);      //将该信息插入数据库
   }
 
   //修改数据库中的指定信息

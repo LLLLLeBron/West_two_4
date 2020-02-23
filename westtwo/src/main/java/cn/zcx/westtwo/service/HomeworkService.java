@@ -57,4 +57,19 @@ public class HomeworkService
     homework.setFlag(flag);
     return homeworkDao.update(assId,homework);
   }
+
+  //批量下载作业信息
+  public static void downloadHomeworks(HttpServletResponse response,int assId,ArrayList<Integer> homIds) throws Exception
+  {
+    HomeworkDao homeworkDao=new HomeworkDao();
+    homeworkDao.getAll(assId);
+    for(int i=0;i<homIds.size();i++)
+    {
+      String fileName=homeworkDao.getHomeworkById(homIds.get(i)).getFileName();
+      String filePath=homeworkDao.getHomeworkById(homIds.get(i)).getFilePath();
+      FileService.downloadFile(response,filePath,fileName);
+    }
+    return;
+  }
+
 }

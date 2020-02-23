@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>修改考核信息</title>
+  <script th:src="@{/jquery-migrate-1.4.1.js}"></script>
+  <link rel="stylesheet" th:href="@{/css/add.css}">
+  <script th:src="@{/js/add.css}"></script>
+</head>
+<body>
+<div id="all">
+  <div class="menu">
+    <span><a class="btn btn-sm btn-success" th:href="@{/}">返回首页</a></span>
+    <span><a class="btn btn-sm btn-success" th:href="@{/assessAdd}" >任务发布</a></span>
+    <span><a class="btn btn-sm btn-success" th:href="@{/assessList}">任务查看</a></span>
+    <span><a class="btn btn-sm btn-success" th:href="@{/logout}">退出登录</a></span>
+  </div>
+  <div class="input-box">
+    <form method="post" th:action="@{/assessEdit/}+${assess.getId()}" id="teacherCreate" enctype="multipart/form-data" style="">
+      <div class="uploadItem2" >
+        <span class="fl" ><h5>题目:</h5></span>
+        <input type="text" id="utTitle" name="assName" th:value="${assess.getAssName()}">
+      </div>
+
+      <div class="uploadItem2" >
+        <span class="fl"><h5>要求:</h5></span>
+        <textarea name="content" class="rte1"  th:value="${assess.getContent()}"></textarea>
+      </div>
+      <div>
+        <span><h5>截止时间：</h5>
+          <input type="date" name="date" id="date" > <input type="time" name="time" id="time" ></span>
+      </div>
+      <div id="bottom">
+        <button type="submit" class="btn btn-primary" id="bottoms">确认修改</button>
+      </div>
+    </form>
+  </div>
+  <div class="icon"></div>
+</div>
+
+</body>
+</html>

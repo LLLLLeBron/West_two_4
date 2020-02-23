@@ -16,13 +16,13 @@ public class FileService
   //根据提供的文件夹名称生成目录
   public static String filePathCreate(HttpServletRequest request,String name)
   {
-    return request.getSession().getServletContext().getRealPath(name);
+    return request.getSession().getServletContext().getRealPath(name);    //返回生成的目录
   }
 
   //根据学号、作业号、提交时间生成文件名
   public static String fileNameCreate(MultipartFile file, long number, int id, Date date)
   {
-    return number+"_"+id+"_"+"_"+date.getTime()+"_"+file.getOriginalFilename();
+    return number+"_"+id+"_"+"_"+date.getTime()+"_"+file.getOriginalFilename();   //返回生成的文件名
   }
 
   //上传文件,将文件写入指定路径
@@ -31,7 +31,7 @@ public class FileService
     File targetFile = new File(filePath);
     if(!targetFile.exists())      //若该文件不存在，则创建该目录
     {
-      targetFile.mkdirs();
+      targetFile.mkdirs();      //创建该目录
     }
     FileOutputStream out = new FileOutputStream(filePath+fileName);     //写入的路径为给出的目录加上文件名
     out.write(file);
@@ -62,11 +62,11 @@ public class FileService
       }
       if (bufferedInputStream != null)
       {
-        bufferedInputStream.close();
+        bufferedInputStream.close();  //关闭
       }
       if (fileInputStream!= null)
       {
-        fileInputStream.close();
+        fileInputStream.close();    //关闭
       }
     }
     return;

@@ -38,11 +38,4 @@ public class ToolService
     }
     return ids;
   }
- /*
-  //判断一个日期字符串是否合法
-  public static boolean is_right(String date)
-  {
-
-  }
-  */
 }
