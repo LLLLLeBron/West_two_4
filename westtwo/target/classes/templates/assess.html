@@ -25,23 +25,27 @@
                 <th>考核内容</th>
                 <th>截止时间</th>
                 <th>提交人数</th>
+                <th>操作</th>
             </tr>
             </thead>
             <tbody>
                 <td th:text="${assess.getId()}"></td>
-                <td><input type="text" th:value="${assess.getAssName()}" name="assName"></td>
-                <td><input type="text" th:value="${assess.getContent()}" name="content"></td>
-                <td><input type="text" th:value="${#dates.format(assess.getDeadline(),'yyyy-MM-dd HH:mm:ss')}" name="date"></td>
+                <td class="change" th:text="${assess.getAssName()}" th:value="${assess.getAssName()}" name="assName"></td>
+                <td class="change" th:text="${assess.getContent()}" th:value="${assess.getContent()}" name="content"></td>
+                <td class="change" th:text="${#dates.format(assess.getDeadline(),'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td th:text="${number}"></td>
                 <td>
-                    <a class="btn btn-sm btn-primary blue" th:href="@{/assessEdit/}+${assess.getId()}"></a>
+                    <a class="btn btn-sm btn-primary blue" th:href="@{/assessEdit/}+${assess.getId()}">修改考核</a>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
+
+
     <div class="input-box">
         <table class="table">
-            <thead>
+            <!----><thead>
                 <tr class="reItemM">
                     <td>学号</td>
                     <td>姓名</td>
@@ -50,11 +54,12 @@
                     <td>操作</td>
                     <td>
                         <a class="btn btn-sm btn-primary red" onclick="deleteLogic();">批量删除</a>
+                        <a class="btn btn-sm btn-primary green" onclick="downloadLogic();">批量下载</a>
                     </td>
                 </tr>
             </thead>
             <tbody id="tableInfo">
-            <tr th:each="homework:${homeworks}">
+            <tr name="row" th:each="homework:${homeworks}">
                 <td th:text="${homework.getNumber()}"></td>
                 <td th:text="${homework.getName()}"></td>
                 <td th:text="${#dates.format(homework.getTime(),'yyyy-MM-dd HH:mm:ss')}"></td>
@@ -81,12 +86,7 @@
     <div class="table"></div>
     <div class="icon"></div>
     <div id="pagination">
-        <a onclick="firstPage()">首页</a>
-        <a onclick="prevPage()">上一页</a>
-        <span id="numPage"></span>
-        <a onclick="pnextPage()">下一页</a>
-        <a onclick="lastPage()">尾页</a>
-
+        <div id="numPage"></div>
     </div>
 </div>
 </body>

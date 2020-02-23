@@ -6,6 +6,7 @@ import cn.zcx.westtwo.pojo.Assess;
 import cn.zcx.westtwo.pojo.Homework;
 import cn.zcx.westtwo.service.AssessService;
 import cn.zcx.westtwo.service.HomeworkService;
+import cn.zcx.westtwo.service.ToolService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +39,7 @@ public class AssessController
   String add(@RequestParam("assName") String assName, @RequestParam("content") String content,
              @RequestParam("date") String date,@RequestParam("time") String time, Model model)
   {
-    Assess assess=new Assess(assName,content,AssessService.setDate(date+" "+time));
+    Assess assess=new Assess(assName,content, ToolService.setDate(date+" "+time));
     AssessService.insertAssess(assess);
     return "redirect:/assessList";      //重定向至考核列表展示
   }
@@ -48,6 +49,8 @@ public class AssessController
   String assess(@PathVariable("id") int id,Model model)
   {
     model.addAttribute("assess", AssessService.getAssessById(id));   //将该id的考核信息传给前台
+    model.addAttribute("number",AssessService.homeworksNumber(id));   //将该考核下的已提交作业数传给前台
+
     //将审核状态字符串数组传给前台
     model.addAttribute("status0", Homework.flags[0]);
     model.addAttribute("status1", Homework.flags[1]);
@@ -57,12 +60,22 @@ public class AssessController
     return "assess";        //返回考核详情页
   }
 
+
+  //进入考核修改页面
+  @GetMapping("/assessEdit/{id}")
+  String editPage(@PathVariable("id") int id,Model model)
+  {
+    model.addAttribute("assess",AssessService.getAssessById(id));
+    return "edit";
+  }
+
+
   //修改考核信息
-  @RequestMapping("/assessEdit/{id}")
+  @PostMapping("/assessEdit/{id}")
   String edit(@PathVariable("id") int id,@RequestParam("assName") String assName, @RequestParam("content") String content,
               @RequestParam("date") String date,@RequestParam("time") String time, Model model)
   {
-    Assess assess=new Assess(id,assName,content,AssessService.setDate(date));
+    Assess assess=new Assess(id,assName,content,ToolService.setDate(date+" "+time));
     AssessService.updateAssess(assess);
     return "redirect:/assess/{id}";    //重定向至考核详情页
   }

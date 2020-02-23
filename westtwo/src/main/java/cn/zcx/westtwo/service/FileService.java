@@ -1,14 +1,17 @@
-package cn.zcx.westtwo.dao;
+package cn.zcx.westtwo.service;
 
 
+import cn.zcx.westtwo.dao.HomeworkDao;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Date;
 
 //进行文件操作的工具类
-public class FileTool
+public class FileService
 {
   //根据提供的文件夹名称生成目录
   public static String filePathCreate(HttpServletRequest request,String name)
@@ -16,10 +19,10 @@ public class FileTool
     return request.getSession().getServletContext().getRealPath(name);
   }
 
-  //根据学号和作业号生成文件名
-  public static String fileNameCreate(MultipartFile file,long number, int id)
+  //根据学号、作业号、提交时间生成文件名
+  public static String fileNameCreate(MultipartFile file, long number, int id, Date date)
   {
-    return number+"_"+id+"_"+file.getOriginalFilename();
+    return number+"_"+id+"_"+"_"+date.getTime()+"_"+file.getOriginalFilename();
   }
 
   //上传文件,将文件写入指定路径
@@ -66,8 +69,6 @@ public class FileTool
         fileInputStream.close();
       }
     }
+    return;
   }
-
-
-
 }

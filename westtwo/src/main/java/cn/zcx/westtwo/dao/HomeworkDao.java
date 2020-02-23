@@ -67,7 +67,7 @@ public class HomeworkDao
       try
       {
         String sql = "create table " + tableName + "(考核编号 int,编号 int,学号 bigint,姓名 varchar(40)," +
-            "审核状态 int,文件路径 varchar(200),文件名 varchar(40),提交时间 TIMESTAMP)";
+            "审核状态 int,文件路径 varchar(200),文件名 varchar(200),提交时间 TIMESTAMP)";
         //执行语句
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.executeUpdate();
@@ -132,12 +132,9 @@ public class HomeworkDao
         {
           e.printStackTrace();
         }
-        finally
-        {
-          ConnectionTool.close(preparedStatement);    //关闭连接
-          connectionClose();
-          return true;
-        }
+        ConnectionTool.close(preparedStatement);    //关闭连接
+        connectionClose();
+        return true;
       }
       else      //表不存在，插入失败
       {
@@ -174,12 +171,9 @@ public class HomeworkDao
       {
         e.printStackTrace();
       }
-      finally
-      {
-        connectionClose();        //关闭连接
-        ConnectionTool.close(preparedStatement);
-        return true;
-      }
+      connectionClose();        //关闭连接
+      ConnectionTool.close(preparedStatement);
+      return true;
     }
     return false;
   }

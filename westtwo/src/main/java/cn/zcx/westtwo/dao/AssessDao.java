@@ -123,12 +123,9 @@ public class AssessDao
       {
         e.printStackTrace();
       }
-      finally
-      {
-        connectionClose();        //关闭连接
-        ConnectionTool.close(preparedStatement);
-        return true;
-      }
+      connectionClose();        //关闭连接
+      ConnectionTool.close(preparedStatement);
+      return true;
     }
     return false;
   }
@@ -156,12 +153,9 @@ public class AssessDao
       {
         e.printStackTrace();
       }
-      finally
-      {
-        connectionClose();        //关闭连接
-        ConnectionTool.close(preparedStatement);
-        return true;
-      }
+      connectionClose();        //关闭连接
+      ConnectionTool.close(preparedStatement);
+      return true;
     }
     return false;
   }

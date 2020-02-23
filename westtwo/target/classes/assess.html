@@ -10,12 +10,13 @@
 <body>
 <div id="all">
     <div class="menu">
-        <span><a class="btn btn-sm btn-primary" th:href="@{/}">返回首页</a></span>
-        <span><a class="btn btn-sm btn-primary" th:href="@{/assessAdd}" >任务发布</a></span>
-        <span><a class="btn btn-sm btn-primary" th:href="@{/assessList}">任务查看</a></span>
-        <span><a class="btn btn-sm btn-primary" th:href="@{/logout}">退出登录</a></span>
+        <span><a class="btn btn-sm btn-success" th:href="@{/}">返回首页</a></span>
+        <span><a class="btn btn-sm btn-success" th:href="@{/assessAdd}" >任务发布</a></span>
+        <span><a class="btn btn-sm btn-success" th:href="@{/assessList}">任务查看</a></span>
+        <span><a class="btn btn-sm btn-success" th:href="@{/logout}">退出登录</a></span>
     </div>
     <div class="table-responsive">
+        <input type="hidden" th:value="${assess.getId()}" name="ASSID" id="ASSID"></input>
         <table class="table table-striped table-sm">
             <thead>
             <tr>
@@ -23,17 +24,17 @@
                 <th>考核名称</th>
                 <th>考核内容</th>
                 <th>截止时间</th>
-                <th>操作</th>
+                <th>提交人数</th>
             </tr>
             </thead>
             <tbody>
-            <tr >
+            <tr>
                 <td th:text="${assess.getId()}"></td>
-                <td th:text="${assess.getAssName()}"></td>
-                <td th:text="${assess.getContent()}"></td>
-                <td th:text="${#dates.format(assess.getDeadline(),'yyyy-MM-dd HH:mm:ss')}"></td>
-                <td>
-                    <a class="btn btn-sm btn-success" th:href="@{/assessEdit/}+${assess.getId()}">修改考核信息</a>
+                <td class="change"  id="name" th:text="${assess.getAssName()}"></td>
+                <td class="change" id="content" th:text="${assess.getContent()}"></td>
+                <td class="change" id="ddl" th:text="${#dates.format(assess.getDeadline(),'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td >
+                    <a class="btn btn-sm btn-primary blue" onclick=""></a>
                 </td>
             </tr>
             </tbody>
@@ -42,42 +43,47 @@
     <div class="input-box">
         <table class="table">
             <thead>
-                <tr class="reItemM">
-                    <td>学号</td>
-                    <td>姓名</td>
-                    <td>提交时间</td>
-                    <td>审核状态</td>
-                    <td>操作</td>
-                </tr>
+            <tr class="reItemM">
+                <td>学号</td>
+                <td>姓名</td>
+                <td>提交时间</td>
+                <td>审核状态</td>
+                <td>操作</td>
+                <td>
+                    <a class="btn btn-sm btn-primary red" onclick="deleteLogic();">批量删除</a>
+                    <a class="btn btn-sm btn-primary green" onclick="downloadLogic();">批量下载</a>
+                </td>
+            </tr>
             </thead>
-            <tbody>
+            <tbody id="tableInfo">
             <tr th:each="homework:${homeworks}">
                 <td th:text="${homework.getNumber()}"></td>
                 <td th:text="${homework.getName()}"></td>
                 <td th:text="${#dates.format(homework.getTime(),'yyyy-MM-dd HH:mm:ss')}"></td>
-
                 <div th:switch="${homework.getFlag()}" >
                     <td th:case="0" th:text="${status0}"> </td>
                     <td th:case="1" th:text="${status1}"> </td>
                     <td th:case="2" th:text="${status2}"> </td>
                 </div>
                 <td>
-                    <a class="btn btn-sm btn-primary" th:href="@{/download/}+${assess.getId()}+'/'+${homework.getId()}">下载</a>
-                    <a class="btn btn-sm btn-danger" th:href="@{/homeworkDelete/}+${assess.getId()}+'/'+${homework.getId()}">删除</a>
-                    <a class="btn btn-sm btn-danger" th:href="@{/homeworkPass/}+${assess.getId()}+'/'+${homework.getId()}">通过</a>
-                    <a class="btn btn-sm btn-danger" th:href="@{/homeworkUnderView/}+${assess.getId()}+'/'+${homework.getId()}">审核中</a>
-                    <a class="btn btn-sm btn-danger" th:href="@{/homeworkCull/}+${assess.getId()}+'/'+${homework.getId()}">未通过</a>
+                    <a class="btn btn-sm btn-primary green" th:href="@{/download/}+${assess.getId()}+'/'+${homework.getId()}">下载</a>
+                    <a class="btn btn-sm btn-primary red" th:href="@{/homeworkDelete/}+${assess.getId()}+'/'+${homework.getId()}">删除</a>
+                    <a class="btn btn-sm btn-primary white" th:href="@{/homeworkPass/}+${assess.getId()}+'/'+${homework.getId()}">通过</a>
+                    <a class="btn btn-sm btn-primary black" th:href="@{/homeworkCull/}+${assess.getId()}+'/'+${homework.getId()}">淘汰</a>
                 </td>
+                <td><input type="checkbox" name = "ID" id="ID" class = "put" th:value = "${homework.getId()}"></td>
             </tr>
             </tbody>
         </table>
 
 
-        <!--
-        -->
-    </div>
+
+   </div>
     <div class="table"></div>
     <div class="icon"></div>
+    <div id="pagination">
+        <div id="numPage"></div>
+    </div>
 </div>
 </body>
 </html>

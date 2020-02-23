@@ -1,37 +1,86 @@
-var tableInfo = document.getElementById("tableInfo");  // 获取table中的内容
-var totalRow = $("tableInfo").find("tr").length;  // 获取table行数
-var pagesize = 5;   // 每页5条
-var totalPage = Math.ceil(totalRow/pagesize);  // 计算出总页数=总条数/每页条数
-var currentPage;   // 当前页
-var startRow;
-var lastRow;
-
-// 定义一个换页的函数
-function pagination(i){
-    currentPage = i;
-    startRow = (currentPage-1)*pagesize;  //每页显示第一条数据的行数
-    lastRow = currentPage*pagesize;  // 每页显示的最后一条数据的行数
-    document.getElementById("numPage").innerHTML="第"+currentPage+"页";
-
-    if(lastRow>totalRow){
-        lastRow=totalRow;// 如果最后一页的最后一条数据显示的行数大于总条数，就让最后一条的行数等于总条数
-    }
-    //将数据遍历出来
-    for(var i=0; i<totalRow; i++){
-        var hrow = tableInfo.rows[i];
-        //获取每一行的数据
-        if( i>=startRow && i<lastRow ){
-            hrow.style.display="table-row";   // 将循环出来的每一行信息作为一个tr显示到页面
-        }else{
-            hrow.style.display="none";
+function changePage(){
+    var pageData=[];
+    var i;
+    $("tr[name='row']").html().each(function(){
+        for(i=0;i< $("#tableInfo").find("tr").length;i++){
+            pageData[i]='$("tr[name=\'row\']")';
+            console.log($("tr[name='row']"));
         }
+    });
+   /*for(i=1;i<$("#tableInfo").find("tr").length;i++){
+    var data=
+        '<tr name="row" th:each="homework:${homeworks}">'+
+           '<td th:text="${homework.getNumber()}"></td>'+
+           '<td th:text="${homework.getName()}"></td>'+
+           '<td th:text="${#dates.format(homework.getTime(),'yyyy-MM-dd HH:mm:ss')}"></td>'+
+           '<div th:switch="${homework.getFlag()}" >
+           <td th:case="0" th:text="${status0}"> </td>
+           <td th:case="1" th:text="${status1}"> </td>
+           <td th:case="2" th:text="${status2}"> </td>
+           </div>'
+           '<td>
+           <a class="btn btn-sm btn-primary green" th:href="@{/download/}+${assess.getId()}+'/'+${homework.getId()}">下载</a>
+           <a class="btn btn-sm btn-primary red" th:href="@{/homeworkDelete/}+${assess.getId()}+'/'+${homework.getId()}">删除</a>
+           <a class="btn btn-sm btn-primary white" th:href="@{/homeworkPass/}+${assess.getId()}+'/'+${homework.getId()}">通过</a>
+           <a class="btn btn-sm btn-primary black" th:href="@{/homeworkCull/}+${assess.getId()}+'/'+${homework.getId()}">淘汰</a>
+           </td>'
+           '<td><input type="checkbox" name = "ID" id="ID" class = "put" th:value = "${homework.getId()}"></td>'
+           '</tr>'
+       pageData.push(data);
+    }*/
+    var Count = pageData.length;//记录条数
+    var PageSize=2;//设置每页示数目
+    var PageCount=Math.ceil(Count/PageSize);//计算总页数
+    var currentPage =1;//当前页，默认为1。
+    var end='</tbody>';//本页结束
+    var head=
+        '<thead><tr class="reItemM">'+
+        '<td>学号</td>'+
+        '<td>姓名</td>'+
+        '<td>提交时间</td>'+
+        '<td>审核状态</td>'+
+        '<td>操作</td>'+
+        '<td><a class="btn btn-sm btn-primary red" onclick="deleteLogic();">批量删除</a></td> <a class="btn btn-sm btn-primary green" onclick="downloadLogic();">批量下载</a>' +
+    '</tr></thead><tbody id="tableInfo">';//表头
+
+    //分页按钮
+    for(i=1;i<=PageCount;i++){
+        var pageN='<a id="al" href="#" selectPage="'+i+'" >第'+i+'页</a>';
+        $("#numPage").append(pageN);
     }
+    //显示第一页
+    $('#table').empty().append(head);
+    for(i=(currentPage-1)*PageSize;i<PageSize*currentPage;i++){
+        $("#table").append(pageData[i]);
+    }
+    $("#table").append(end);
+    //显示选择页的内容
+    $("#al").click(function(){
+        var selectPage=$(this).attr("selectPage");
+        $("#table").html("");
+        $('#table').append(head);
+        for(i=(selectPage-1)*PageSize;i<PageSize*selectPage;i++){
+            $("#table").append(pageData[i]);
+        }
+        $("#table").append(end);
+    });
+
+
+    /*$.ajax({
+        url:"",
+        type:"post",
+        data:{
+            //表格的数据
+        },
+        datatype:"json"
+
+    })*/
+
+
 }
 
-function deleteLogic() {
-
+function downloadLogic() {
     var checkNum = $("input[name='ID']:checked").length;
-
     var id=$(":input[type='hidden'][id=ASSID]").val();
 
     if(checkNum==0){
@@ -39,13 +88,43 @@ function deleteLogic() {
         return;
     }
 
-    if(confirm("确定要删除吗？")){
+    if(confirm("确定要下载吗？")){
         var checkList = new Array();
         $("input[name='ID']:checked").each(function () {
             checkList.push($(this).val())
         });
     }
 
+    $.ajax({
+        url:"/downloadAll/"+id,
+        type:"post",
+        data:{
+            checkList:checkList.toString()
+        },
+        datatype:"json",
+        success:function (data) {
+            location.reload();
+            alert("下载成功！")
+        },
+        error:function (msg) {
+            alert("下载失败！")
+        }
+    })
+}
+
+function deleteLogic() {
+    var checkNum = $("input[name='ID']:checked").length;
+    var id=$(":input[type='hidden'][id=ASSID]").val();
+    if(checkNum==0){
+        alert("至少选择一项");
+        return;
+    }
+    if(confirm("确定要删除吗？")){
+        var checkList = new Array();
+        $("input[name='ID']:checked").each(function () {
+            checkList.push($(this).val())
+        });
+    }
     $.ajax({
         url:"/deleteAll/"+id,
         type:"post",
@@ -64,28 +143,9 @@ function deleteLogic() {
 }
 
 
-function firstPage(){
-    var i = 1;
-    pagination(i);
-}
-function prevPage(){
-    var i= currentPage-1;
-    if(i<1) i=currentPage;
-    pagination(i);
-}
-function pnextPage(){
-    var i= currentPage+1;
-    if(i>totalPage) i= currentPage;
-    pagination(i);
-}
-function lastPage(){
-    var i = totalPage;
-    pagination(i);
-}
-
 
 $(function(){
-    firstPage();
+    changePage();
 
     $(".change").dblclick(function(event){
 

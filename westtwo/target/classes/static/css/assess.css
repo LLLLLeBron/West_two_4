@@ -203,13 +203,21 @@ th,td{
     overflow-y:hidden;
 }
 
-#pagination{
+#pagination {
     width: 280px;
     height: 40px;
     background-color: #fff1f1;
-    position:absolute;
+    position: absolute;
     top: 580px;
     left: 500px;
     text-align: center;
+}
+
+put{
+    width: 25px;
+    height: 25px;
+}
+#numPage.innerHTML{
+    color:black;
 }
 

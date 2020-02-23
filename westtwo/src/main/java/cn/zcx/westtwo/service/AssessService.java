@@ -2,6 +2,7 @@ package cn.zcx.westtwo.service;
 
 
 import cn.zcx.westtwo.dao.AssessDao;
+import cn.zcx.westtwo.dao.HomeworkDao;
 import cn.zcx.westtwo.pojo.Assess;
 
 import java.text.ParseException;
@@ -61,23 +62,14 @@ public class AssessService
       return true;
   }
 
-  //通过日期字符串生成date
-  public static Date setDate(String date)
+
+  //获取该考核下作业信息的数量
+  public static int homeworksNumber(int assId)
   {
-    Date newDate=new Date();
-    try
-    {
-      SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");     //设置时间格式为 "yyyy-MM-dd HH:mm:ss"
-      newDate= format.parse(date+":00");     //生成时间
-    }
-    catch (Exception e)
-    {
-      e.printStackTrace();
-    }
-    finally
-    {
-      return newDate;  //返回生成的时间
-    }
+    HomeworkDao homeworkDao=new HomeworkDao();
+    homeworkDao.getAll(assId);        //获取该考核下的所有作业信息
+    return homeworkDao.getHomeworks().size();     //返回作业信息的数量
   }
+
 
 }

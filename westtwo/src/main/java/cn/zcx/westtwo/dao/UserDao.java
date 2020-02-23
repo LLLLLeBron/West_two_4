@@ -151,12 +151,9 @@ public class UserDao
       {
         e.printStackTrace();
       }
-      finally
-      {
-        connectionClose();      //关闭连接
-        ConnectionTool.close(preparedStatement);
-        return true;
-      }
+      connectionClose();      //关闭连接
+      ConnectionTool.close(preparedStatement);
+      return true;
     }
     return false;
   }
